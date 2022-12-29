@@ -1,4 +1,4 @@
 # Java
 
 
-DSA codes in java
+DSA codes of java
