@@ -17,7 +17,7 @@ public class BinarySearch {
         System.out.println("Enter the target element:");
         target = sc.nextInt();
         int pos = search(arr,target);
-        System.out.println("The target element is found at "+ pos);
+        System.out.println("The target element is found at position "+ pos);
         System.out.println("Array :"+ Arrays.toString(arr));
 
     }
