@@ -9,73 +9,47 @@ public class OderAgnosticBinarySearch {
         System.out.println("Enter the length of the array:");
         Scanner sc = new Scanner(System.in);
         l = sc.nextInt();
-        int []arr = new int[l] ;
+        int[] arr = new int[l];
         System.out.println("Enter the elements in the array in ascending or descending order:");
         for (int i = 0; i < l; i++) {
-            arr[i]=sc.nextInt();
+            arr[i] = sc.nextInt();
         }
         System.out.println("Enter the target element:");
         target = sc.nextInt();
-        int start= 0;
-        int end = l-1;
-        if(arr[0]<arr[end])
-            AscendingSearch(arr,target,start,end);
-        else
-            DescendingSearch( arr, target,start,end);
-        System.out.println("Array :" + Arrays.toString(arr));
+        int ans = orderAgnosticBS(arr,target);
+        System.out.println("pos : " + (ans+1) );
     }
-    static void DescendingSearch(int []arr, int target, int start,int end){
-        System.out.println("It is a descending oder array");
-        if (target > arr[start] || target < arr[end]) {
-            System.out.println("Element not present in the array");
-            System.exit(0);
+
+    static int orderAgnosticBS(int []arr, int target){
+        int start = 0;
+        int end = arr.length-1 ;
+
+        // find whether the array is asc or desc order
+
+        boolean isAsc = arr[end] > arr[start];
+
+        while(start <= end){
+            int mid = start + (end -start)/2;
+
+            if (arr[mid] == target){
+                return mid;
+            }
+
+            if(isAsc){
+                if(target < arr[mid])
+                    end = mid-1;
+                else if(target > arr[mid])
+                    start = mid +1;
+            }
+            else {
+                if(target > arr[mid])
+                    end = mid -1;
+                else if(target < arr[mid])
+                    start = mid + 1;
+            }
+
         }
-        while (start < end) {
-            int middle = start+(end-start)/2;
-            if (target == arr[middle]) {
-                System.out.println("Target element is found in the array at position " + (middle + 1));
-                return;
-            }
-            if (target == arr[end]) {
-                System.out.println("Target element is found in the array at position " + (end + 1));
-                return;
-            }
-            if (target == arr[start]) {
-                System.out.println("Target element is found in the array at position: " + (start + 1));
-                return;
-            }
-            if (target > arr[middle])
-                end = middle-1;
-            else
-                start = middle+1;
-        }
-       return;
-    }
-    static void AscendingSearch(int []arr, int target,int start,int end){
-        System.out.println("It is an ascending order array");
-        if (target < arr[start] || target > arr[end]) {
-            System.out.println("Element not present in the array");
-            System.exit(0);
-        }
-        while (start < end) {
-            int middle = start+(end-start) / 2;
-            if (target == arr[middle]) {
-                System.out.println("Target element is found in the array at position " + (middle + 1));
-                return;
-            }
-            if (target == arr[end]) {
-                System.out.println("Target element is found in the array at position " + (end + 1));
-                return;
-            }
-            if (target == arr[start]) {
-                System.out.println("Target element is found in the array at position: " + (start + 1));
-                return;
-            }
-            if (target < arr[middle])
-                end = middle-1;
-            else
-                start = middle+1;
-        }
-        return;
+        return -1;
+
     }
 }

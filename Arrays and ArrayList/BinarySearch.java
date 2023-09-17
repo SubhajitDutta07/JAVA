@@ -16,12 +16,12 @@ public class BinarySearch {
         }
         System.out.println("Enter the target element:");
         target = sc.nextInt();
-        int pos = search(arr,target);
-        System.out.println("The target element is found at position "+ pos);
+        int pos = BinaryS(arr,target);
+        System.out.println("The target element is found at position "+ (pos+1) );
         System.out.println("Array :"+ Arrays.toString(arr));
 
     }
-    static int search(int []arr, int target)
+    static int BinaryS(int []arr, int target)
     {
         int start= 0;
         int end = arr.length-1;
@@ -36,7 +36,7 @@ public class BinarySearch {
             else if(target > arr[middle])
                 start = middle+1;
             else
-                return middle+1;
+                return middle;
         }
         return -1;
     }

@@ -28,7 +28,7 @@ public class PeakIndexInMountain{     // bitonic array
         while ( start < end ){
             int middle = start + (end - start)/2 ;
             if(arr[middle] > arr[middle+1]) {
-                // u r in the decresing part of the srray
+                // u r in the decresing part of the array
                 end = middle ;
             }
             else {
